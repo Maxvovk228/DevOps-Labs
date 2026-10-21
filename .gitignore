@@ -1,0 +1,9 @@
+﻿.vagrant/
+*.log
+*.key
+*.pem
+.env
+.env.*
+*token*
+*secret*
+Vagrantfile.backup
