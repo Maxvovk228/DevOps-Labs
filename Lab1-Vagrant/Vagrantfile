@@ -1,11 +1,27 @@
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "hashicorp/bionic64"
-  config.vm.network "forwarded_port", guest: 22, host: 2222, id: "ssh"
-  config.vm.provider "virtualbox" do |vb|
-    vb.name = "LabVagrant"
-    vb.memory = "2048"
-    vb.cpus = 2
+  # Віртуальна машина №1 — Ubuntu 18.04
+  config.vm.define "ubuntu" do |ubuntu|
+    ubuntu.vm.box = "hashicorp/bionic64"
+    ubuntu.vm.hostname = "ubuntu-vm"
+
+    ubuntu.vm.provider "virtualbox" do |vb|
+      vb.name = "Ubuntu-Lab"
+      vb.memory = 2048
+      vb.cpus = 2
+    end
+  end
+
+  # Віртуальна машина №2 — Debian 12
+  config.vm.define "debian" do |debian|
+    debian.vm.box = "debian/bookworm64"
+    debian.vm.hostname = "debian-vm"
+
+    debian.vm.provider "virtualbox" do |vb|
+      vb.name = "Debian-Lab"
+      vb.memory = 1024
+      vb.cpus = 1
+    end
   end
 
 end
